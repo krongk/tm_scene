@@ -1,0 +1,19 @@
+<%= simple_form_for(@site) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :template %>
+    <%#= f.input :key %>
+    <%#= f.input :status %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :preview_image_key %>
+    <%= f.input :is_private %>
+    <%= f.input :private_password %>
+    <%#= f.input :html %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

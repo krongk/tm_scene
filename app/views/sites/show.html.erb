@@ -1,0 +1,103 @@
+<%= content_for(:left_menu) do %>
+  <% @site.template.sections.select { |s| s.is_repeat == true }.each do |section| %>
+    <li class="">
+      <%=link_to section.title, new_site_section_path(site_id: @site.id, section_id: section.id) %>
+    </li>
+  <% end %>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='page-header'>
+      <h1 class='pull-left'>
+        <i class='icon-time'></i>
+        <span>Timeline</span>
+      </h1>
+      <div class='pull-right'>
+        <ul class='breadcrumb'>
+          <li>
+            <%= link_to '预览', preview_path(@site.key) %>
+          </li>
+          <li class='separator'>
+            <i class='icon-angle-right'></i>
+          </li>
+          <li>Example pages</li>
+          <li class='separator'>
+            <i class='icon-angle-right'></i>
+          </li>
+          <li class='active'>Timeline</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='row timeline'>
+  <div class='col-sm-12'>
+    <ol class='list-unstyled'>
+      <% @site.site_sections.each do |site_section| %>
+        <li>
+          <div class='icon purple-background'>
+            <%= site_section.position %>
+          </div>
+          <div class='title'>
+            <%= site_section.section.title %>
+            <small class='text-muted'>
+              <%= site_section.section.description %>
+            </small>
+          </div>
+          <div class='content'>
+            <pre>
+              <%= site_section.html %>
+            </pre>
+            <%= link_to '编辑', edit_site_section_path(site_section), class: 'btn btn-info' %>
+            <%= link_to '删除', site_section, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info' %>
+          </div>
+        </li>
+      <% end %>
+      <li>
+        <div class='icon green-background'>
+          二
+        </div>
+        <div class='title'>
+          <a class="text-muted" href="#">Doris Solomon</a>
+          uploaded new photos
+          <small class='text-muted'>10 minutes ago</small>
+        </div>
+        <div class='content'>
+          <img src="http://placehold.it/140x70/dce1e5/143249" />
+          <img src="http://placehold.it/140x70/dce1e5/143249" />
+          <img src="http://placehold.it/140x70/dce1e5/143249" />
+          <img src="http://placehold.it/140x70/dce1e5/143249" />
+        </div>
+      </li>
+      <li>
+        <div class='icon orange-background'>
+          <i class='icon-comments'></i>
+        </div>
+        <div class='title'>
+          <a class="text-muted" href="#">Noelle Goldstein</a>
+          sent comment
+          <small class='text-muted'>1 hour ago</small>
+        </div>
+        <div class='content'>
+          Nostrum doloremque dolor sed vel amet sed labore aut praesentium nobis recusandae illo impedit laboriosam quis quibusdam praesentium aut nisi
+        </div>
+      </li>
+      <li>
+        <div class='icon red-background'>
+          <i class='icon-facetime-video'></i>
+        </div>
+        <div class='title'>
+          <a class="text-muted" href="#">Don Eason</a>
+          shared video
+          <small class='text-muted'>2 weeks ago</small>
+        </div>
+        <div class='content'>
+        </div>
+      </li>
+    </ol>
+  </div>
+</div>

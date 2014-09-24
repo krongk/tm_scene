@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  code: MyString
+  status: MyString
+  note: MyString
+  actived_by: 1
+  actived_site_id: 1
+
+two:
+  user_id: 
+  code: MyString
+  status: MyString
+  note: MyString
+  actived_by: 1
+  actived_site_id: 1

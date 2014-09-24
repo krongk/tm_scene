@@ -1,0 +1,41 @@
+<h1>Listing sites</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Template</th>
+      <th>Key</th>
+      <th>Status</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Preview image key</th>
+      <th>Is private</th>
+      <th>Private password</th>
+      <th>Html</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sites.each do |site| %>
+      <tr>
+        <td><%= site.template.title %></td>
+        <td><%= site.key %></td>
+        <td><%= site.status %></td>
+        <td><%= site.title %></td>
+        <td><%= site.description %></td>
+        <td><%= site.preview_image_key %></td>
+        <td><%= site.is_private %></td>
+        <td><%= site.private_password %></td>
+        <td><%= site.html %></td>
+        <td><%= link_to 'Show', site %></td>
+        <td><%= link_to 'Edit', edit_site_path(site) %></td>
+        <td><%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Site', new_site_path %>

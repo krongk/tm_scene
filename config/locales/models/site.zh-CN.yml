@@ -1,0 +1,23 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      site: 应用站点
+    attributes:
+      site:
+        user_id: 拥有者
+        template_id: 模板
+        key: 唯一键
+        status: 状态
+        title: 标题
+        description: 描述
+        preview_image_key: 缩略图
+        is_private: 是否私有
+        private_password: 私有密码
+        html: HTML
+        created_at: 创建时间
+        updated_at: 更新时间
+    errors:
+      site: 
+  helpers:
+    site: 

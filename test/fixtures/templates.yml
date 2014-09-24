@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cate_id: 
+  title: MyString
+  init_section_keys: MyString
+  html: MyText
+  form: MyText
+
+two:
+  cate_id: 
+  title: MyString
+  init_section_keys: MyString
+  html: MyText
+  form: MyText

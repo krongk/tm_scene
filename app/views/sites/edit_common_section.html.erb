@@ -1,0 +1,35 @@
+<%= simple_form_for @site, html: {class: 'form-horizontal'} do |f| %>
+  <div class="row margin-top-bottom">
+    <div class="col-sm-12 col-md-8">
+      <div class="row">
+        <div class="col-sm-12 col-md-6" id="template_form">
+          <h3 class="bottom_bordered">第一步. 编辑内容</h3>
+          <div>
+            <% temp_form = @site.template.form %>
+            <% if temp_form %>
+              <%= render inline:  temp_form, locals: {site_id: @site.id } %>
+            <% else %>
+              <P>本页面没有需要添加的内容， 跳过此步</P>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 hidden-xs">
+      <h3 class="bottom_bordered">示例预览</h3>
+      <%= render partial: 'demo_show', locals: {site: @site} %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <hr class="bordered" />
+      <div class="actions text-center">
+        <%= link_to "上一步", edit_site_path(@site), class: 'btn btn-default' %>
+        <%= button_tag(type: 'submit', data: { disable_with: "正在保存..." }, class: "btn btn-meflat icon-left") do %>
+          <i class="fa fa-location-arrow"></i> 保存：<%= @site.title %>，进入下一页
+        <% end %>       
+        <%= link_to "跳过", site_path(@site), class: 'btn btn-default' %>
+      </div>
+    </div>
+  </div>
+<% end %> 

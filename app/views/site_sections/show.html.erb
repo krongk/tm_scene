@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Site:</strong>
+  <%= @site_section.site %>
+</p>
+
+<p>
+  <strong>Section:</strong>
+  <%= @site_section.section %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @site_section.position %>
+</p>
+
+<p>
+  <strong>Html:</strong>
+  <%= @site_section.html %>
+</p>
+
+<%= link_to 'Edit', edit_site_section_path(@site_section) %> |
+<%= link_to 'Back', site_sections_path %>

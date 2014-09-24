@@ -1,0 +1,26 @@
+<header>
+  <nav class='navbar navbar-default'>
+    <a class='navbar-brand' href='index.html'>
+      <img width="81" height="21" class="logo" alt="Flatty" src="/assets/flatty/logo.svg" />
+      <img width="21" height="21" class="logo-xs" alt="Flatty" src="/assets/flatty/logo_xs.svg" />
+    </a>
+    <a class='toggle-nav btn pull-left' href='#'>
+      <i class='icon-reorder'></i>
+    </a>
+    <ul class='nav'>
+      <%# add navigation links to this file %>
+      <li><%= link_to '关于', page_path('about') %></li>
+      <li><%= link_to '帮助', page_path('help') %></li>
+      <!-- user notify -->
+      <li class='dropdown dark user-menu'>
+        <%= render 'layouts/application/navigation_links' %>
+      </li>
+    </ul>
+    <form action='search_results.html' class='navbar-form navbar-right hidden-xs' method='get'>
+      <button class='btn btn-link icon-search' name='button' type='submit'></button>
+      <div class='form-group'>
+        <input value="" class="form-control" placeholder="搜索..." autocomplete="off" id="q_header" name="q" type="text" />
+      </div>
+    </form>
+  </nav>
+</header>

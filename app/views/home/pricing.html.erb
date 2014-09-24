@@ -1,0 +1,53 @@
+<% title "价格方案-维斗喜帖价格|喜帖价格,请帖价格,请柬价格|二维码请柬价格|电子请帖价格|微信请帖价格" %>
+<% meta_description "维斗喜帖高性价比的价格方案，提供二维码请帖制作，微信喜帖制作，电子请帖制作，微相册制作；分分钟创建，惊艳朋友圈。" %>
+
+<!-- START 3 column variable height pricing table(Min-Max) -->
+<div class="pricing-table pricing-variable-height pricing-three-column">
+  <div class="plan">
+    <div class="plan-name">
+      <h2>个人版</h2>
+      <span>￥<%= ENV["PRICE_BASE"] %>/个/年</span>
+    </div>
+    <ul>
+      <li class="plan-feature">免费试用</li>
+      <li class="plan-feature">用于个人活动</li>
+      <li class="plan-feature">
+        实用范围：<br/>
+        结婚、生日宴<br/>
+        活动Party、个人相册
+      </li>
+      <li class="plan-feature">免费无限次修改</li>
+      <li class="plan-feature">无限存储/流量</li>
+      <li class="plan-feature">默认保存时间：1年</li>
+      <li class="plan-feature"><a href="/templates" class="btn btn-meflat btn-block btn-plan-select"> 马上制作 </a></li>
+    </ul>
+  </div>
+  <div class="plan">
+    <div class="plan-name">
+      <h2>商务版</h2>
+      <span>￥<%= ENV["PRICE_VIP"] %>/个/年</span>
+    </div>
+    <ul>
+      <li class="plan-feature">免费试用</li>
+      <li class="plan-feature">用于商业目的</li>
+      <li class="plan-feature">
+        实用范围：<br/>
+        产品宣传、店庆<br/>
+        品牌/形象展示
+      </li>
+      <li class="plan-feature">去维斗LOGO</li>
+      <li class="plan-feature">免费无限次修改</li>
+      <li class="plan-feature">无限群发</li>
+      <li class="plan-feature">无限存储/流量</li>
+      <li class="plan-feature">保存时间：1年</li>
+      <li class="plan-feature">第二年续费专享优惠</li>
+      <li class="plan-feature"><a href="/vip" class="btn btn-meflat btn-block btn-plan-select"> 联系我们 </a></li>
+    </ul>
+  </div>
+</div>
+<!-- END 3 column variable height pricing table(Min-Max) -->
+<div class="text-right" style="margin-top: 80px; margin-right: 50px;">
+  <%= link_to '/post/help', class: 'btn btn-meflat icon-right' do %>
+    查看使用帮助说明 <i class="fa fa-arrow-right"></i>
+  <% end %>
+</div>

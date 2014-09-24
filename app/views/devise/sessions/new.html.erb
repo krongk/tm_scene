@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-sm-8 text-col">
+    <h3 class="bottom_bordered">会员登录<small></small></h3>
+    <div class="row">
+      <div class="col-sm-12 col-md-6 text-col">
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+
+          <%= devise_error_messages! %>
+          <div class="form-group col-md-10">
+            <%= f.label :email %>
+            <%= f.email_field :email, :autofocus => true, class: 'form-control required' %>
+          </div>
+          <div class="form-group col-md-10">
+            <%= f.label :password %>
+            <%= f.password_field :password, class: 'form-control required' %>
+          </div>
+          <div class="form-group col-md-10">
+            <button name="submit" type="submit" class="btn btn-meflat icon-left" data-error-message="错误!" data-sending-message="发送中..." data-ok-message="发送成功"><i class="fa fa-location-arrow"></i>登 录</button>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <ul class="list-unstyled oauth-login-btn">
+          <li>
+            <%= link_to user_omniauth_authorize_path(:weibo) do %> 
+              <%=image_tag 'meflat/login_with_weibo.png', title: '新浪微博账号登录' %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to user_omniauth_authorize_path(:tqq) do %> 
+              <%=image_tag 'meflat/login_with_tqq.png',  title: 'QQ账号登录' %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to user_omniauth_authorize_path(:douban) do %> 
+              <%=image_tag 'meflat/login_with_douban.png', title: '豆瓣账号登录' %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- end col-sm-6 -->
+
+  <div class="col-sm-4 text-col">
+    <h3 class="bottom_bordered">需要帮助？</h3>
+    <%- if devise_mapping.registerable? %>
+      <p><%= link_to '新用户注册', new_registration_path(resource_name), class: 'right'  %></p>
+    <% end -%>
+    <%- if devise_mapping.recoverable? %>
+      <p><%= link_to "忘记密码?", new_password_path(resource_name), class: 'right' %></p>
+    <% end -%>
+    <p><a href="/post/login-help">查看帮助说明</a></p>
+    <p>联系客服：</p>
+    <p><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=77632132&site=qq&menu=yes"><img border="0" src="/assets/meflat/icon-qq-boy.png" width="46px" /></a> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=77632132&site=qq&menu=yes"><img border="0" src="/assets/meflat/icon-qq-girl.png" width="46px" /></a>
+    <a id="icon-weixin" data-original-title="扫一扫加微信"><img alt="维斗喜帖微信" border="0" src="/assets/meflat/icon-weixin.png" width="46px" /></a>
+    <div id="weixin-qrcode" class="hidden"><img src="/assets/meflat/weixin-qrcode.png" align="维斗喜帖微信二维码" /></div>
+    <br/>
+    热线电话：<a href="tel:18080810818">180-8081-0818</a></p>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#icon-weixin').popover({
+        html: true,
+        placement: 'right',
+        title: '扫描二维码加微信',
+        content: function(){
+          return $('#weixin-qrcode').html();
+        }
+    });
+  });
+
+  $("#new_member").validate();
+  $("#new_user").validate();
+
+</script>

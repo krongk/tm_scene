@@ -1,0 +1,30 @@
+<!-- http://www.bootply.com/63147 -->
+<style type="text/css">
+ /*see sites.css.scss*/
+</style>
+<script type="text/javascript">
+  carous = function(){
+    $('.carousel').carousel({
+      interval: 3000
+    })
+  };
+   //#turbolinks style
+  $(document).ready(carous);
+  $(document).on('page:load', carous);
+</script>
+
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="iphone-bg">
+      <div id="myCarousel" class="carousel slide vertical">
+          <!-- Carousel items -->
+          <div class="carousel-inner">
+        
+          </div>
+          <!-- Carousel nav -->
+          <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
+          <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
+      </div>
+    </div>
+  </div>
+</div>

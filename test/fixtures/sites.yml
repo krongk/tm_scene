@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  template_id: 
+  key: MyString
+  status: MyString
+  title: MyString
+  description: MyString
+  preview_image_key: MyString
+  is_private: false
+  private_password: MyString
+  html: MyText
+
+two:
+  template_id: 
+  key: MyString
+  status: MyString
+  title: MyString
+  description: MyString
+  preview_image_key: MyString
+  is_private: false
+  private_password: MyString
+  html: MyText

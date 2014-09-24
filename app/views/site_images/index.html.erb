@@ -1,0 +1,39 @@
+<h1>Listing site_images</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Site</th>
+      <th>Site section</th>
+      <th>Key</th>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Image file name</th>
+      <th>Image file size</th>
+      <th>Image content type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @site_images.each do |site_image| %>
+      <tr>
+        <td><%= site_image.site %></td>
+        <td><%= site_image.site_section %></td>
+        <td><%= site_image.key %></td>
+        <td><%= site_image.name %></td>
+        <td><%= site_image.image %></td>
+        <td><%= site_image.image_file_name %></td>
+        <td><%= site_image.image_file_size %></td>
+        <td><%= site_image.image_content_type %></td>
+        <td><%= link_to 'Show', site_image %></td>
+        <td><%= link_to 'Edit', edit_site_image_path(site_image) %></td>
+        <td><%= link_to 'Destroy', site_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Site image', new_site_image_path %>

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  template_id: 
+  key: MyString
+  title: MyString
+  description: MyString
+  preview_image: MyString
+  typo: MyString
+  is_repeat: false
+  html: MyString
+  form: MyString
+
+two:
+  template_id: 
+  key: MyString
+  title: MyString
+  description: MyString
+  preview_image: MyString
+  typo: MyString
+  is_repeat: false
+  html: MyString
+  form: MyString

@@ -1,0 +1,17 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      site_section: 应用组件
+    attributes:
+      site_section:
+        site_id: 应用
+        section_id: 组件模板
+        position: 位置
+        html: HTML
+        created_at: 创建时间
+        updated_at: 更新时间
+    errors:
+      site_section: 
+  helpers:
+    site_section: 

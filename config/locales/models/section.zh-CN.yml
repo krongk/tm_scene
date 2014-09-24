@@ -1,0 +1,20 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      section: 组件
+    attributes:
+      section:
+        template_id: 模板
+        key: 唯一键
+        title: 标题
+        description: 描述
+        preview_image: 缩略图
+        typo: 类型
+        is_repeat: 重复组件
+        html: HTML
+        form: FORM
+    errors:
+      section: 
+  helpers:
+    section: 

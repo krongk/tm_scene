@@ -1,0 +1,22 @@
+<% if user_signed_in? %>
+<a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+  <img width="23" height="23" alt="<%= current_user.name %>" src="/assets/avatar.jpg" />
+  <span class='user-name'><%= current_user.email %></span>
+  <b class='caret'></b>
+</a>
+<% end %>
+<ul class='dropdown-menu'>
+  <% if user_signed_in? %>
+    <li><%= link_to '修改密码', edit_user_registration_path %></li>
+    <li><%= link_to '退出', destroy_user_session_path, :method=>'delete' %></li>
+  <% else %>
+    <li><%= link_to '登录', new_user_session_path %></li>
+    <li><%= link_to '注册', new_user_registration_path %></li>
+  <% end %>
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <li><%= link_to '管理', '/admin' %></li>
+      <li><%= link_to '会员', users_path %></li>
+    <% end %>
+  <% end %>
+</ul>

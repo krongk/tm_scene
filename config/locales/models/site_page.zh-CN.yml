@@ -1,0 +1,19 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      site_page: 网页
+    attributes:
+      site_page:
+        site_id: 应用
+        key: 唯一键
+        title: 标题
+        keywords: 关键词
+        description: 描述
+        content: 内容
+        created_at: 创建时间
+        updated_at: 更新时间
+    errors:
+      site_page: 
+  helpers:
+    site_page: 
