@@ -73,7 +73,7 @@ module ApplicationHelper
   end
 
   #Keystore.value_for(@site_page, 'text1')
-  def value_for(obj, name, title, attr={})
+  def value_for(obj, name, title = nil,  attr={})
     Keystore.value_for(obj, name, attr).try(:html_safe)
   end
 end

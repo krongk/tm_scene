@@ -1,0 +1,30 @@
+<%= simple_form_for(@picture) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :user %>
+    <%= f.association :gallery %>
+    <%= f.input :name %>
+    <%= f.input :key %>
+  </div>
+
+  <%= link_to "+ 点击这里添加图片", meitu_load_pictures_path(gallery_id: @gallery.try(:id)), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#meituModal', :remote => true  %>
+
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+
+<!-- meituModal start-->
+<div id="meituModal" class="modal fade">
+  <div class="modal-dialog" style="width: 50%; margin: 0 auto;">
+    <div class="modal-content">
+      <div class="modal-body meitu-body"  style="height: 500px; padding-top: 0px;">
+       <p class="text-center"><i class="fa fa-spinner fa-spin"></i> 正在加载...</p>
+      </div><!-- End modal-body -->
+    </div><!-- End modal-content -->
+  </div><!-- End modal-dialog -->
+</div>
+<!-- meituModal end-->

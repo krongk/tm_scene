@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  resources :pictures do 
+    collection {get :meitu_load}
+    collection {post :meitu_upload}
+  end
+
+  resources :galleries
+
+  resources :resources
+
   #admin
   resources :site_comments
   resources :site_pages

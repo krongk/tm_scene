@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140923061441) do
+ActiveRecord::Schema.define(version: 20140926152155) do
 
   create_table "cates", force: true do |t|
     t.string "name"
@@ -19,19 +19,26 @@ ActiveRecord::Schema.define(version: 20140923061441) do
 
   add_index "cates", ["name"], name: "index_cates_on_name", unique: true, using: :btree
 
+  create_table "galleries", force: true do |t|
+    t.integer "user_id"
+    t.string  "name"
+  end
+
+  add_index "galleries", ["user_id"], name: "index_galleries_on_user_id", using: :btree
+
   create_table "keystores", force: true do |t|
-    t.string  "obj_type"
-    t.integer "obj_id"
-    t.string  "key"
+    t.string  "obj_type", null: false
+    t.integer "obj_id",   null: false
+    t.string  "key",      null: false
     t.string  "value"
   end
 
   add_index "keystores", ["obj_type", "obj_id", "key"], name: "index_keystores_on_obj_type_and_obj_id_and_key", unique: true, using: :btree
 
   create_table "page_templates", force: true do |t|
-    t.string   "title"
+    t.string   "title",         null: false
     t.string   "preview_image"
-    t.text     "html"
+    t.text     "html",          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -39,11 +46,11 @@ ActiveRecord::Schema.define(version: 20140923061441) do
   add_index "page_templates", ["title"], name: "index_page_templates_on_title", unique: true, using: :btree
 
   create_table "payment_coupons", force: true do |t|
-    t.integer  "user_id"
-    t.string   "code"
-    t.decimal  "price",           precision: 8, scale: 2
+    t.integer  "user_id",         limit: 8,                                            null: false
+    t.string   "code",                                                                 null: false
+    t.decimal  "price",                     precision: 8, scale: 2
     t.string   "message"
-    t.string   "status",                                  default: "active"
+    t.string   "status",                                            default: "active"
     t.integer  "actived_by"
     t.integer  "actived_site_id"
     t.string   "note"
@@ -57,9 +64,9 @@ ActiveRecord::Schema.define(version: 20140923061441) do
   add_index "payment_coupons", ["user_id"], name: "index_payment_coupons_on_user_id", using: :btree
 
   create_table "payment_tokens", force: true do |t|
-    t.integer  "user_id"
-    t.string   "code"
-    t.string   "status",          default: "active"
+    t.integer  "user_id",                            null: false
+    t.string   "code",                               null: false
+    t.string   "status",          default: "active", null: false
     t.string   "note"
     t.integer  "actived_by"
     t.integer  "actived_site_id"
@@ -72,25 +79,55 @@ ActiveRecord::Schema.define(version: 20140923061441) do
   add_index "payment_tokens", ["code"], name: "index_payment_tokens_on_code", unique: true, using: :btree
   add_index "payment_tokens", ["user_id"], name: "index_payment_tokens_on_user_id", using: :btree
 
-  create_table "sections", force: true do |t|
-    t.integer  "template_id"
+  create_table "pictures", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "gallery_id"
+    t.string   "name"
     t.string   "key"
-    t.string   "title"
-    t.string   "description"
-    t.string   "preview_image"
-    t.string   "typo",          default: "image"
-    t.boolean  "is_repeat",     default: false
-    t.string   "html"
-    t.string   "form"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "sections", ["key"], name: "index_sections_on_key", unique: true, using: :btree
+  add_index "pictures", ["gallery_id"], name: "index_pictures_on_gallery_id", using: :btree
+  add_index "pictures", ["user_id"], name: "index_pictures_on_user_id", using: :btree
+
+  create_table "resources", force: true do |t|
+    t.integer  "user_id"
+    t.string   "typo"
+    t.string   "name"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "resources", ["user_id"], name: "index_resources_on_user_id", using: :btree
+
+  create_table "sections", force: true do |t|
+    t.integer  "template_id",                                        null: false
+    t.string   "key",                                                null: false
+    t.string   "title"
+    t.string   "description"
+    t.string   "preview_image"
+    t.string   "typo",                             default: "image"
+    t.boolean  "is_repeat",                        default: false
+    t.text     "html",          limit: 2147483647
+    t.text     "form"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sections", ["key", "template_id"], name: "index_sections_on_key", unique: true, using: :btree
   add_index "sections", ["template_id"], name: "index_sections_on_template_id", using: :btree
 
   create_table "site_comments", force: true do |t|
-    t.integer  "site_id"
+    t.integer  "site_id",      null: false
     t.string   "name"
     t.string   "mobile_phone"
     t.string   "tel_phone"
@@ -117,7 +154,7 @@ ActiveRecord::Schema.define(version: 20140923061441) do
   add_index "site_comments", ["site_id"], name: "index_site_comments_on_site_id", using: :btree
 
   create_table "site_images", force: true do |t|
-    t.integer  "site_id"
+    t.integer  "site_id",            null: false
     t.integer  "site_section_id"
     t.string   "key"
     t.string   "name"
@@ -134,7 +171,7 @@ ActiveRecord::Schema.define(version: 20140923061441) do
   add_index "site_images", ["site_section_id"], name: "index_site_images_on_site_section_id", using: :btree
 
   create_table "site_pages", force: true do |t|
-    t.integer  "site_id"
+    t.integer  "site_id",     null: false
     t.string   "key"
     t.string   "title"
     t.string   "keywords"
@@ -148,7 +185,7 @@ ActiveRecord::Schema.define(version: 20140923061441) do
   add_index "site_pages", ["site_id"], name: "index_site_pages_on_site_id", using: :btree
 
   create_table "site_sections", force: true do |t|
-    t.integer  "site_id"
+    t.integer  "site_id",                null: false
     t.integer  "section_id"
     t.integer  "position",   default: 0
     t.text     "html"
@@ -160,15 +197,16 @@ ActiveRecord::Schema.define(version: 20140923061441) do
   add_index "site_sections", ["site_id"], name: "index_site_sections_on_site_id", using: :btree
 
   create_table "sites", force: true do |t|
-    t.integer  "template_id"
-    t.string   "key"
-    t.string   "status",            default: "nopay"
+    t.integer  "user_id",                                                null: false
+    t.integer  "template_id",                                            null: false
+    t.string   "key",                                                    null: false
+    t.string   "status",                               default: "nopay"
     t.string   "title"
     t.string   "description"
     t.string   "preview_image_key"
-    t.boolean  "is_private",        default: false
+    t.boolean  "is_private",                           default: true
     t.string   "private_password"
-    t.text     "html"
+    t.text     "html",              limit: 2147483647
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -177,11 +215,11 @@ ActiveRecord::Schema.define(version: 20140923061441) do
   add_index "sites", ["template_id"], name: "index_sites_on_template_id", using: :btree
 
   create_table "templates", force: true do |t|
-    t.integer  "cate_id"
+    t.integer  "cate_id",                                                                                null: false
     t.string   "title"
-    t.decimal  "price",             precision: 8, scale: 2
-    t.string   "init_section_keys",                         default: "header|placeholder|footer"
-    t.text     "html"
+    t.decimal  "price",                                precision: 8, scale: 2,                           null: false
+    t.string   "init_section_keys",                                            default: "header|footer"
+    t.text     "html",              limit: 2147483647
     t.text     "form"
     t.datetime "created_at"
     t.datetime "updated_at"
