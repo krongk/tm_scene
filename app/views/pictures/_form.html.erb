@@ -10,16 +10,15 @@
 
   <% if @picture.new_record? %>
     <div id="pictures"></div>
-    <%= link_to "+ 点击这里添加图片", meitu_load_pictures_path(gallery_id: @gallery.try(:id)), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#meituModal', :remote => true  %>
+    <%= link_to "+ 点击这里添加图片", meitu_load_pictures_path(gallery_id: @gallery.try(:id)), id: 'btn-upload', class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#meituModal', :remote => true  %>
   <% else %>
     <div id="pictures">
       <table class="picture" id="picture_<%= @picture.id %>">
         <tr>
           <td width="50%">
-            <%=qiniu_image_tag @picture.asset.url, :thumbnail=>'180x180>', :quality => 80, class: 'img-responsive' %>
+            <%=qiniu_image_tag @picture.asset.url, :quality => 80, class: 'img-responsive' %>
           </td>
           <td>
-            <%=link_to "删除", @picture, data: { confirm: '确定要删除吗?' }, :method=>:delete, :remote => true, class: "btn btn-danger btn-xs"%>
             <% unless mobile_device? %>
               <%=link_to "美化", meitu_load_pictures_path(id: @picture.id, editor_type: 1), class: 'btn btn-warning btn-xs', 'data-toggle'=>'modal', 'data-target' =>'#meituModal', :remote => true %>
               <%=link_to "拼图", meitu_load_pictures_path(id: @picture.id, editor_type: 2), class: 'btn btn-warning btn-xs', 'data-toggle'=>'modal', 'data-target' =>'#meituModal', :remote => true %>
@@ -32,7 +31,10 @@
 
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, input_html: {class: "btn btn-primary btn-lg"} %>
+    <% unless @picture.new_record? %>
+      <%=link_to "删除", @picture, data: { confirm: '确定要删除吗?' }, :method=>:delete, class: "btn btn-danger btn-lg"%>
+    <% end %>
   </div>
 <% end %>
 
