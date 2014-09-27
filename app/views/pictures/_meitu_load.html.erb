@@ -1,7 +1,7 @@
 <script type="text/javascript">
   var ready2;
   ready2 = function() {
-    alert("lafee");
+
     xiuxiu.embedSWF("meituContent",<%= @editor_type %>,"100%","100%");
     /*第1个参数是加载编辑器div容器，第2个参数是编辑器类型(1为美化，2为拼图)，第3个参数是div容器宽，第4个参数是div容器高*/
     <% if @picture.present? %>//如果是修改图片
@@ -27,13 +27,14 @@
     }
     xiuxiu.onUploadResponse = function (data)
     {
+      alert(data);
       //上传完成后处理事件：1. ajax替换图片列表，2.关闭美图Modal窗
       //data的值为图片ID，由controller返回
       <% if @picture.present? %>//如果是修改图片, 则替换原图片
         $("#picture_" + data + " img")[0].src = 'http://song-dev.qiniudn.com/picture/' + data + '/original.jpg?assetMogr/thumbnail/120x120%3E/quality/80" thumbnail="120x120&gt;';
         $("#picture_alert_" + data).html("更新成功！");
       <% else %>//如果是新添加图片，则将新图片追加到图片列表
-        $("#pictures").append('<li class="picture" id="picture_' + data + '"> <table> <tr> <td width="50%"> <img alt="Original" class="img-responsive" quality="80" src="http://song-dev.qiniudn.com/picture/' + data + '/original.jpg?assetMogr/thumbnail/120x120%3E/quality/80" thumbnail="120x120&gt;" /> </td> <td> <span class="handle"><i class="fa fa-long-arrow-up"> </i>上下排序<i class="fa fa-long-arrow-down"> </i></span> </td> </tr> <tr> <td> <a class="btn btn-danger btn-xs" data-confirm="确定要删除吗?" data-method="delete" data-remote="true" href="/picture/' + data + '" rel="nofollow">删除</a> <a class="btn btn-warning btn-xs" data-remote="true" data-target="#meituModal" data-toggle="modal" href="/picture/meitu_load?id=' + data + '&editor_type=1">美化</a><a class="btn btn-warning btn-xs" data-remote="true" data-target="#meituModal" data-toggle="modal" href="/picture/meitu_load?id=' + data + '&editor_type=2">拼图</a> </td> <td> <span id="picture_alert_' + data + '"></span> </td> </tr> </table></li>');
+        $("#pictures").append('<li class="picture" id="picture_' + data + '"> <img alt="Original" class="img-responsive" quality="80" src="http://song-dev.qiniudn.com/pictures/' + data + '/original.jpg?assetMogr/thumbnail/120x120%3E/quality/80" thumbnail="120x120&gt;" /></li>');
       <% end %>
       //关闭美图休息Modal框
       close_modal();
