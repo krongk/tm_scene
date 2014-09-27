@@ -31,10 +31,10 @@
       //上传完成后处理事件：1. ajax替换图片列表，2.关闭美图Modal窗
       //data的值为图片ID，由controller返回
       <% if @picture.present? %>//如果是修改图片, 则替换原图片
-        $("#picture_" + data + " img")[0].src = 'http://song-dev.qiniudn.com/picture/' + data + '/original.jpg?assetMogr/thumbnail/120x120%3E/quality/80" thumbnail="120x120&gt;';
+        $("#picture_" + data + " img")[0].src = 'http://song-dev.qiniudn.com/pictures/' + data + '/original.jpg?assetMogr/thumbnail/120x120%3E/quality/80" thumbnail="120x120"';
         $("#picture_alert_" + data).html("更新成功！");
       <% else %>//如果是新添加图片，则将新图片追加到图片列表
-        $("#pictures").append('<table class="site_image" id="site_image_' + data + '"> <tr> <td width="50%"> <img alt="知达客" class="img-responsive" quality="80" src="http://song-dev.qiniudn.com/pictures/' + data + '/original.jpg?imageMogr/thumbnail/120x120%3E/quality/80" thumbnail="120x120&gt;" /> </td> <td> <a class="btn btn-danger btn-xs" data-confirm="确定要删除吗?" data-method="delete" data-remote="true" href="/pictures/' + data + '" rel="nofollow">删除</a> <a class="btn btn-warning btn-xs" data-remote="true" data-target="#meituModal" data-toggle="modal" href="/pictures/meitu_load?id=' + data + '&editor_type=1">美化</a><a class="btn btn-warning btn-xs" data-remote="true" data-target="#meituModal" data-toggle="modal" href="/pictures/meitu_load?id=' + data + '&editor_type=2">拼图</a> </td> </tr> </table>');
+        $("#pictures").append('<table class="picture" id="picture_' + data + '"> <tr> <td width="50%"> <img alt="知达客" class="img-responsive" quality="80" src="http://song-dev.qiniudn.com/pictures/' + data + '/original.jpg?imageMogr/thumbnail/120x120%3E/quality/80" thumbnail="120x120&gt;" /> </td> <td> <a class="btn btn-danger btn-xs" data-confirm="确定要删除吗?" data-method="delete" data-remote="true" href="/pictures/' + data + '" rel="nofollow">删除</a> <a class="btn btn-warning btn-xs" data-remote="true" data-target="#meituModal" data-toggle="modal" href="/pictures/meitu_load?id=' + data + '&editor_type=1">美化</a><a class="btn btn-warning btn-xs" data-remote="true" data-target="#meituModal" data-toggle="modal" href="/pictures/meitu_load?id=' + data + '&editor_type=2">拼图</a> </td> </tr> </table>');
       <% end %>
       //关闭美图休息Modal框
       close_modal();
