@@ -25,7 +25,7 @@ class PicturesController < ApplicationController
     @picture = Picture.find_by(id: params[:id])
     not_found if @picture.nil?
     #替换图片
-    @picture.image = params[:picture][:image]
+    @picture.asset = params[:picture][:asset]
     @picture.save!
     @picture.reload
 
@@ -97,6 +97,6 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:user_id, :gallery_id, :name, :key)
+      params.require(:picture).permit(:user_id, :gallery_id, :name, :key, :asset, :asset_file_name, :assetfile_size, :asset_content_type )
     end
 end
