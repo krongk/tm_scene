@@ -1,0 +1,18 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      picture: 图片
+    attributes:
+      picture:
+        user_id: 用户
+        gallery_id: 相册
+        name: 名称
+        asset_file_name: 文件名
+        asset_content_type: 文件类型
+        asset_file_size: 文件大小
+        asset_updated_at: 更新时间
+    errors:
+      picture: 
+  helpers:
+    picture: 

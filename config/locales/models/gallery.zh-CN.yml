@@ -1,0 +1,12 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      gallery: 相册
+    attributes:
+      gallery:
+        name: 名称
+    errors:
+      gallery: 
+  helpers:
+    gallery: 

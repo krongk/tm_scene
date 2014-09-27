@@ -5,18 +5,9 @@
 
 zh-CN:
   notice:
-    site:
-      choose_template: "还没有选择模板，请选择一个你中意的模板！"
-      created: "应用创建成功，进入下一步！"
-      updated: "应用修改成功，进入下一步！"
-      set_theme: "主题更改成功！"
-      active_token: "激活码验证成功！"
-      inactive_token: "对不起，你输入的激活码已经被使用过了，本次验证无效！"
-      invalid_token: "你输入的激活码无效，请重新输入！"
-    site_steps:
-      finished: "恭喜你，应用创建完成。"
-    site_comment:
-      created: "留言成功，感谢你的参与，我们会尽快与你取得联系。"
+    created: "创建成功"
+    updated: "修改成功"
+    destroyed: "删除成功"
   will_paginate:
     previous_label: "&#8592; 上一页"
     next_label: "下一页 &#8594;"

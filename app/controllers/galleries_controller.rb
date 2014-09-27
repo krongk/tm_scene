@@ -4,7 +4,7 @@ class GalleriesController < ApplicationController
   # GET /galleries
   # GET /galleries.json
   def index
-    @galleries = Gallery.all
+    @galleries = current_user.galleries.all
   end
 
   # GET /galleries/1
@@ -25,10 +25,11 @@ class GalleriesController < ApplicationController
   # POST /galleries.json
   def create
     @gallery = Gallery.new(gallery_params)
+    @gallery.user_id = current_user.id
 
     respond_to do |format|
       if @gallery.save
-        format.html { redirect_to @gallery, notice: 'Gallery was successfully created.' }
+        format.html { redirect_to @gallery, notice: t('notice.created') }
         format.json { render :show, status: :created, location: @gallery }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class GalleriesController < ApplicationController
   def update
     respond_to do |format|
       if @gallery.update(gallery_params)
-        format.html { redirect_to @gallery, notice: 'Gallery was successfully updated.' }
+        format.html { redirect_to @gallery, notice: t('notice.updated') }
         format.json { render :show, status: :ok, location: @gallery }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class GalleriesController < ApplicationController
   def destroy
     @gallery.destroy
     respond_to do |format|
-      format.html { redirect_to galleries_url, notice: 'Gallery was successfully destroyed.' }
+      format.html { redirect_to galleries_url, t('notice.destroyed') }
       format.json { head :no_content }
     end
   end
@@ -65,10 +66,11 @@ class GalleriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_gallery
       @gallery = Gallery.find(params[:id])
+      authorize!(@gallery)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gallery_params
-      params.require(:gallery).permit(:user_id, :name)
+      params.require(:gallery).permit(:name)
     end
 end

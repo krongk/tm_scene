@@ -11,9 +11,7 @@ Rails.application.routes.draw do
 
   #admin
   resources :site_comments
-  resources :site_pages
-  resources :site_images
-  resources :site_sections
+  resources :site_pages  resources :site_sections
   resources :sites do 
     get 'preview'
     get 'themes'

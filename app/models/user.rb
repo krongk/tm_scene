@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   has_many :sites, -> { order("updated_at DESC") }, :dependent => :destroy
   has_many :galleries, :dependent => :destroy
-  has_many :resources, :dependent => :destroy
-  has_many :pictures, :dependent => :destroy
+  has_many :resources, -> { order("asset_updated_at DESC") }, :dependent => :destroy
+  has_many :pictures, -> { order("asset_updated_at DESC") }, :dependent => :destroy
   
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
