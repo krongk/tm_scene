@@ -8,6 +8,7 @@
     <%= f.input :key %>
   </div>
 
+  <div id="pictures"></div>
   <%= link_to "+ 点击这里添加图片", meitu_load_pictures_path(gallery_id: @gallery.try(:id)), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#meituModal', :remote => true  %>
 
 
