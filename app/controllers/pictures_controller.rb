@@ -1,7 +1,7 @@
 #encoding: utf-8
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :verify_authenticity_token, only: [:meitu_upload]
+  skip_before_filter :verify_authenticity_token, only: [:create, :meitu_upload]
 
   # GET /pictures
   # GET /pictures.json
