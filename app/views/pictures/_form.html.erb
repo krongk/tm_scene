@@ -16,7 +16,8 @@
       <table class="picture" id="picture_<%= @picture.id %>">
         <tr>
           <td width="50%">
-            <%=qiniu_image_tag @picture.asset.url, :quality => 80, class: 'img-responsive' %>
+            <%#=qiniu_image_tag @picture.asset.url, :quality => 80, class: 'img-responsive' %>
+            <img alt="直达客" class="img-responsive" quality="80" src="http://song-dev.qiniudn.com/pictures%2F' + <%= @picture.id %> + '%2Foriginal.jpg"/> 
           </td>
           <td>
             <% unless mobile_device? %>
