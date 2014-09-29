@@ -2,22 +2,19 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :user %>
-    <%= f.association :gallery %>
+    <%= f.association :gallery, include_blank: false, selected: params[:gallery_id] %>
     <%= f.input :name %>
-    <%= f.input :key %>
   </div>
 
   <% if @picture.new_record? %>
     <div id="pictures"></div>
-    <%= link_to "+ 点击这里添加图片", meitu_load_pictures_path(gallery_id: @gallery.try(:id)), id: 'btn-upload', class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#meituModal', :remote => true  %>
+    <p><%= link_to "+ 点击这里添加图片", meitu_load_pictures_path(gallery_id: @gallery.try(:id)), id: 'btn-upload', class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#meituModal', :remote => true  %></p>
   <% else %>
     <div id="pictures">
       <table class="picture" id="picture_<%= @picture.id %>">
         <tr>
           <td width="50%">
-            <%#=qiniu_image_tag @picture.asset.url, :quality => 80, class: 'img-responsive' %>
-            <img alt="直达客" class="img-responsive" quality="80" src="http://song-dev.qiniudn.com/pictures%2F' + <%= @picture.id %> + '%2Foriginal.jpg"/> 
+            <%= qiniu_image_tag @picture.asset.url, :thumbnail => '300x300>', :quality => 80, class: 'img-responsive' %>
           </td>
           <td>
             <% unless mobile_device? %>
@@ -30,9 +27,8 @@
     </div>
   <% end %>
 
-
   <div class="form-actions">
-    <%= f.button :submit, input_html: {class: "btn btn-primary btn-lg"} %>
+    <%= f.button :submit, class: "btn btn-primary btn-lg" %>
     <% unless @picture.new_record? %>
       <%=link_to "删除", @picture, data: { confirm: '确定要删除吗?' }, :method=>:delete, class: "btn btn-danger btn-lg"%>
     <% end %>

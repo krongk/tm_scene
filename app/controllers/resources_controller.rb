@@ -4,7 +4,7 @@ class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.json
   def index
-    @resources = Resource.all
+    @resources = Resource.page(params[:page] || 1)
   end
 
   # GET /resources/1
@@ -25,10 +25,11 @@ class ResourcesController < ApplicationController
   # POST /resources.json
   def create
     @resource = Resource.new(resource_params)
+    @resource.user_id = current_user.id
 
     respond_to do |format|
       if @resource.save
-        format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
+        format.html { redirect_to @resource, notice: t('notice.created') }
         format.json { render :show, status: :created, location: @resource }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class ResourcesController < ApplicationController
   def update
     respond_to do |format|
       if @resource.update(resource_params)
-        format.html { redirect_to @resource, notice: 'Resource was successfully updated.' }
+        format.html { redirect_to @resource, notice: t('notice.updated') }
         format.json { render :show, status: :ok, location: @resource }
       else
         format.html { render :edit }
@@ -54,9 +55,10 @@ class ResourcesController < ApplicationController
   # DELETE /resources/1
   # DELETE /resources/1.json
   def destroy
+    authorize!(@resource)
     @resource.destroy
     respond_to do |format|
-      format.html { redirect_to resources_url, notice: 'Resource was successfully destroyed.' }
+      format.html { redirect_to resources_url, notice: t('notice.destroyed') }
       format.json { head :no_content }
     end
   end

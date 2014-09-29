@@ -4,12 +4,13 @@ class GalleriesController < ApplicationController
   # GET /galleries
   # GET /galleries.json
   def index
-    @galleries = current_user.galleries.all
+    @galleries = current_user.galleries.page(params[:page] || 1)
   end
 
   # GET /galleries/1
   # GET /galleries/1.json
   def show
+    @pictures = @gallery.pictures.page(params[:page]|| 1)
   end
 
   # GET /galleries/new
@@ -55,6 +56,7 @@ class GalleriesController < ApplicationController
   # DELETE /galleries/1
   # DELETE /galleries/1.json
   def destroy
+    authorize!(@picture)
     @gallery.destroy
     respond_to do |format|
       format.html { redirect_to galleries_url, t('notice.destroyed') }

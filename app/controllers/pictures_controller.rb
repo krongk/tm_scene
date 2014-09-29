@@ -6,7 +6,7 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
-    @galleries = Gallery.all
+    @galleries = Gallery..page(params[:page]||1)
     @pictures = current_user.pictures.page(params[:page]||1)
   end
 
@@ -52,9 +52,10 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     @picture = Picture.create(picture_params)
+    @picture.user_id = current_user.id
     respond_to do |format|
       format.js
-      format.html { redirect_to pictures_url, notice: '图片添加成功.' }
+      format.html { redirect_to pictures_url, notice:  t('notice.created') }
     end
   end
 
@@ -63,7 +64,7 @@ class PicturesController < ApplicationController
   def update
     respond_to do |format|
       if @picture.update(picture_params)
-        format.html { redirect_to @picture, notice: '图片更新成功.' }
+        format.html { redirect_to @picture, notice: t('notice.updated') }
         format.json { render :show, status: :ok, location: @picture }
       else
         format.html { render :edit }
@@ -75,10 +76,12 @@ class PicturesController < ApplicationController
   # DELETE /pictures/1
   # DELETE /pictures/1.json
   def destroy
+    authorize!(@picture)
     @picture.destroy
     respond_to do |format|
       format.html { redirect_to pictures_url, notice:  t('notice.destroyed') }
       format.json { head :no_content }
+      format.js { render 'destroy'}
     end
   end
 

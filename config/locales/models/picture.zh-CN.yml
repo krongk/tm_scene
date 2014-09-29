@@ -6,7 +6,8 @@ zh-CN:
     attributes:
       picture:
         user_id: 用户
-        gallery_id: 相册
+        gallery_id: 图片夹
+        gallery: 图片夹
         name: 名称
         asset_file_name: 文件名
         asset_content_type: 文件类型

@@ -2,7 +2,7 @@
 zh-CN:
   activerecord:
     models:
-      gallery: 相册
+      gallery: 图片夹
     attributes:
       gallery:
         name: 名称

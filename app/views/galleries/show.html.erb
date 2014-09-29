@@ -1,14 +1,14 @@
-<p id="notice"><%= notice %></p>
+<% title "图片素材" %>
+<% page_header "图片夹：" + @gallery.name %>
 
-<p>
-  <strong>User:</strong>
-  <%= @gallery.user %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @gallery.name %>
-</p>
-
-<%= link_to 'Edit', edit_gallery_path(@gallery) %> |
-<%= link_to 'Back', galleries_path %>
+<div class='group-header group-header-first'>
+  <div class='row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+      <div class='text-center'>
+        <%= link_to '添加图片', new_picture_path(gallery_id: @gallery.id), class: 'btn btn-lg btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<%= render partial: 'pictures/list', locals: {pictures: @pictures} %>

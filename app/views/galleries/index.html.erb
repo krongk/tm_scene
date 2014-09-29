@@ -1,22 +1,12 @@
-<h1>Listing galleries</h1>
+<h1>图片夹列表</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
+<table class="table table-striped">
   <tbody>
     <% @galleries.each do |gallery| %>
       <tr>
-        <td><%= gallery.user %></td>
-        <td><%= gallery.name %></td>
-        <td><%= link_to 'Show', gallery %></td>
-        <td><%= link_to 'Edit', edit_gallery_path(gallery) %></td>
-        <td><%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to gallery.name, gallery %></td>
+        <td><%= link_to '修改', edit_gallery_path(gallery) %></td>
+        <td><%= link_to '删除', gallery, method: :delete, data: { confirm: '删除图片夹，将会删除该图片夹下的所有图片，确定要删除吗？' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +14,4 @@
 
 <br>
 
-<%= link_to 'New Gallery', new_gallery_path %>
+<%= link_to '添加图片夹', new_gallery_path, class: 'btn btn-lg btn-primary' %>

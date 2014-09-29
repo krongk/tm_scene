@@ -1,24 +1,18 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>User:</strong>
-  <%= @picture.user %>
-</p>
-
-<p>
-  <strong>Gallery:</strong>
-  <%= @picture.gallery %>
-</p>
-
-<p>
-  <strong>Name:</strong>
+  <strong>所属图片夹:</strong>
+  <%= link_to @picture.gallery.name, gallery_path(@picture.gallery) %>
+  <strong>名称:</strong>
   <%= @picture.name %>
 </p>
 
 <p>
-  <strong>Key:</strong>
-  <%= @picture.key %>
+ <%= image_tag qiniu_image_path(@picture.asset.url) %>
 </p>
 
-<%= link_to 'Edit', edit_picture_path(@picture) %> |
-<%= link_to 'Back', pictures_path %>
+<p>
+  <%= @picture.asset.url %>
+</p>
+
+<%= link_to '编辑', edit_picture_path(@picture), class: "btn btn-primary btn-lg" %> |
+<%=link_to "删除", @picture, data: { confirm: '确定要删除吗?' }, :method=>:delete,class: "btn btn-danger btn-lg"%>
+<%= link_to '返回', pictures_path, class: "btn btn-default btn-lg" %>

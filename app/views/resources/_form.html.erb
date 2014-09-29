@@ -2,9 +2,9 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :user %>
-    <%= f.input :typo %>
+    <%= f.input :typo, collection: Resource::TYPO, include_blank: false, selected: params[:typo] %>
     <%= f.input :name %>
+    <%= f.file_field :asset %>
   </div>
 
   <div class="form-actions">

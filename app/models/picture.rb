@@ -9,3 +9,8 @@ class Picture < ActiveRecord::Base
   validates_attachment_size :asset, :less_than => 5.megabytes
   validates_attachment_content_type :asset, :content_type => /\Aimage\/.*\Z/
 end
+
+# show image in your view
+#   <%= qiniu_image_tag @picture.asset.url, :thumbnail => '300x300>', :quality => 80 %>
+#   or
+# <%= image_tag qiniu_image_path(@picture.asset.url, :thumbnail => '300x300>', :quality => 80) %>

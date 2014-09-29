@@ -27,7 +27,7 @@ gem 'therubyracer', :platform=>:ruby
 gem 'sitemap_generator'
 gem 'sidekiq'
 gem 'nokogiri'
-
+gem 'magnific-popup-rails'
 #fix error: No source of timezone data could be found. (TZInfo::DataSourceNotFound)
 gem 'tzinfo-data'
 
