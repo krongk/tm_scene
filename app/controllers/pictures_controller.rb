@@ -6,7 +6,7 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
-    @galleries = Gallery..page(params[:page]||1)
+    @galleries = Gallery.page(params[:page]||1)
     @pictures = current_user.pictures.page(params[:page]||1)
   end
 
